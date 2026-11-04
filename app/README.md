@@ -7,7 +7,7 @@
 - `app.js`：讀 `data/latest.json`，畫出期望值、號碼、包牌、預算 4 個分頁
 - `picker.js`：選號（隨機選再刪熱門組合，任兩組最多重複 2 個號碼）
 - `stats.js`：組合數、對中機率、損益兩平頭獎、本月剩餘期數
-- `sw.js`、`manifest.json`、`icons/`：PWA 離線快取與加到主畫面
+- `sw.js`、`manifest.json`、`icons/`：PWA 離線快取與加到主畫面（`icon.svg` 為原稿，PNG 由它輸出；iPhone 用 `apple-touch-icon.png`）
 - `data/latest.json`：**目前是示意資料**（`"sample": true`），由資料流程接手後改成真實資料
 - `preview/`：手機預覽截圖
 - 撞號風險與期望值計算直接引用 `../split-risk/split-risk.js`，部署時要保留這個相對位置
