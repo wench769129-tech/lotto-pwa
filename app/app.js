@@ -66,7 +66,7 @@ function renderEV() {
       <div class="kpi"><div class="lab">每注稅後期望</div><div class="val ${net < 0 ? 'neg' : 'pos'}">${net < 0 ? '−' : '+'}${fmt(Math.abs(net))}元</div></div>
       <a class="kpi" href="#budget"><div class="lab">本月預算</div><div class="val ${left < 0 ? 'neg' : ''}">餘${fmt(left)}</div></a>
     </div>
-    <p class="note">下期開獎 ${data.next.date.slice(5).replace('-', '/')}（${wk}）・第 ${data.next.period} 期</p>
+    <p class="note">下期開獎 ${data.next.date.slice(5).replace('-', '/')}（${wk}）・第 ${data.next.period} 期${data.next.jackpotEstimated ? '・頭獎為估計值（上期累積＋預估提撥）' : ''}</p>
 
     <h2>每注 50 元能拿回多少</h2>
     <div class="card">

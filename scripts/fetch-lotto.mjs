@@ -12,9 +12,7 @@ const MIN_DRAWS = 60;
 const MAX_MONTHS = 12;
 const DRAW_DAYS = [2, 5]; // 每週二、五開獎
 
-// 頭獎金額欄位名稱尚未從官方文件確認，先列出可能的名稱；第一次執行後依 raw-sample.json 修正
-const POOL_KEYS = ['jackpot', 'jackpotAmount', 'firstPrizeAmount', 'prizeAmount', 'totalAmount'];
-const WINNER_KEYS = ['jackpotWinners', 'firstPrizeCount', 'firstPrizeNum'];
+const SALES_AVG_DRAWS = 4; // 下期銷售額以最近幾期平均估計
 
 const readJSON = async (url, fallback) => {
   try { return JSON.parse(await readFile(url, 'utf8')); } catch { return fallback; }
@@ -31,25 +29,33 @@ export function monthsBack(now, n) {
   return out;
 }
 
-const pickNumber = (item, keys) => {
-  for (const k of keys) if (typeof item[k] === 'number' && Number.isFinite(item[k])) return item[k];
-  return null;
-};
+const num = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+
+// API 期別為 115000102（民國年 + 6 位序號），轉成台彩公告用的 115102
+export function displayPeriod(apiPeriod) {
+  const p = Number(apiPeriod);
+  return `${Math.floor(p / 1e6)}${String(p % 1e6).padStart(3, '0')}`;
+}
 
 // 把 API 的一筆資料轉成前端格式；drawNumberSize 前 6 個是獎號（已排序），第 7 個是特別號
+// jackpotAssign.prize 是本期銷售提撥的頭獎，lastPrize 是上期累積，兩者相加為本期頭獎總額
 export function parseItem(item) {
   const all = item.drawNumberSize;
   if (!Array.isArray(all) || all.length < 7) throw new Error(`第 ${item.period} 期號碼格式不符`);
   const numbers = all.slice(0, 6).map(Number).sort((a, b) => a - b);
   const special = Number(all[6]);
   if ([...numbers, special].some((n) => !(n >= 1 && n <= 49))) throw new Error(`第 ${item.period} 期號碼超出 1~49`);
+  const jp = item.jackpotAssign ?? {};
+  const prize = num(jp.prize), carry = num(jp.lastPrize);
   return {
-    period: String(item.period),
+    period: displayPeriod(item.period),
     date: String(item.lotteryDate).slice(0, 10),
     numbers,
     special,
-    jackpotPool: pickNumber(item, POOL_KEYS),
-    jackpotWinners: pickNumber(item, WINNER_KEYS),
+    jackpotPool: prize == null ? null : prize + (carry ?? 0),
+    jackpotWinners: num(jp.winnerCount),
+    sales: num(item.sellAmount),
+    jackpotShare: prize != null && item.sellAmount > 0 ? prize / item.sellAmount : null,
   };
 }
 
@@ -60,8 +66,28 @@ export function nextDrawDate(lastDate) {
   return d.toISOString().slice(0, 10);
 }
 
+// 下一期期別：同一年序號加一，跨年從 001 開始
+export function nextPeriod(period, nextDate) {
+  const year = Math.floor(Number(period) / 1000), seq = Number(period) % 1000;
+  const nextYear = Number(nextDate.slice(0, 4)) - 1911;
+  return nextYear === year ? String(year * 1000 + seq + 1) : `${nextYear}001`;
+}
+
+// 下期頭獎估計：上期無人中頭獎則累積本期總額，再加上依平均銷售額與提撥比例估算的新提撥
+export function estimateNext(draws) {
+  const recent = draws.slice(0, SALES_AVG_DRAWS).filter((d) => d.sales);
+  const last = draws[0];
+  if (!recent.length || last.jackpotPool == null || last.jackpotWinners == null) return {};
+  const estSales = Math.round(recent.reduce((a, d) => a + d.sales, 0) / recent.length);
+  const share = last.jackpotShare ?? 0.22;
+  const carry = last.jackpotWinners > 0 ? 0 : last.jackpotPool;
+  return { jackpot: Math.round(carry + estSales * share), estSales };
+}
+
 // 合併：API 沒給的頭獎金額，依序用 overrides.json、上一版 latest.json 補上
-export function merge(draws, prev, overrides) {
+export function merge(rawDraws, prev, overrides) {
+  const est = estimateNext(rawDraws);
+  const draws = rawDraws.map(({ sales, jackpotShare, ...d }) => d);
   const prevByPeriod = new Map((prev?.sample ? [] : prev?.draws ?? []).map((d) => [d.period, d]));
   const ov = overrides?.draws ?? {};
   const merged = draws.map((d) => {
@@ -75,17 +101,17 @@ export function merge(draws, prev, overrides) {
   });
 
   const last = merged[0];
-  const period = String(Number(last.period) + 1);
+  const date = nextDrawDate(last.date);
+  const period = nextPeriod(last.period, date);
   const nov = overrides?.next?.period === period ? overrides.next : {};
   const prevNext = prev?.next ?? {};
-  const samePeriod = prevNext.period === period;
   const next = {
     period,
-    date: nextDrawDate(last.date),
-    jackpot: nov.jackpot ?? (samePeriod ? prevNext.jackpot : null) ?? prevNext.jackpot ?? last.jackpotPool ?? 100000000,
-    estSales: nov.estSales ?? (samePeriod ? prevNext.estSales : null) ?? prevNext.estSales ?? 150000000,
-    // 頭獎金額不是本期官方數字時標示為估計
-    jackpotEstimated: !(nov.jackpot != null || (samePeriod && prevNext.jackpotEstimated === false)),
+    date,
+    jackpot: nov.jackpot ?? est.jackpot ?? prevNext.jackpot ?? 100000000,
+    estSales: nov.estSales ?? est.estSales ?? prevNext.estSales ?? 150000000,
+    // 下期頭獎是估計值（累積 + 預估提撥），手動填入官方公告數字時才為 false
+    jackpotEstimated: nov.jackpot == null,
   };
   return { next, draws: merged };
 }
