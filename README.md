@@ -12,7 +12,9 @@
 
 ## 資料來源
 - 開獎號碼：台灣彩券官方 API `api.taiwanlottery.com/TLCAPIWeB/Lottery/Lotto649Result`
-- 頭獎累積與下期頭獎：API 若沒提供，在 `app/data/overrides.json` 手動補，`app/data/raw-sample.json` 會留下最新兩筆 API 原始資料供核對欄位
+- 頭獎：API 的 `jackpotAssign.prize`（本期提撥）＋ `lastPrize`（上期累積）
+- 下期頭獎為估計：上期無人中則累積，再加最近 4 期平均銷售額 × 上期頭獎提撥比例；可在 `app/data/overrides.json` 填台彩公告數字覆蓋
+- `app/data/raw-sample.json` 留下最新兩筆 API 原始資料供核對
 
 ## 測試
 ```
