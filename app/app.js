@@ -1,6 +1,7 @@
-// 大樂透分析 PWA 主程式：讀取 data/latest.json，畫出 4 個分頁。
+// 大樂透分析 PWA 主程式：讀取 data/latest.json，畫出 5 個分頁（開獎分頁在 draw-tab.js）。
 import { RULES, analyzeCombo, fixedPrizeEV, midPrizeEV, validateCombo } from '../split-risk/split-risk.js';
 import { pickSets } from './picker.js';
+import { initDraw, onTabShown } from './draw-tab.js';
 import { C, matchProb, breakEvenJackpot, drawsLeftInMonth, comboSummary, frequency } from './stats.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -293,10 +294,11 @@ function onBudgetClick(e) {
 
 // ---------- 分頁切換與啟動 ----------
 function showTab() {
-  const tab = (location.hash || '#ev').slice(1);
+  const tab = (location.hash || '#draw').slice(1);
   for (const s of document.querySelectorAll('.tab')) s.classList.toggle('on', s.id === `tab-${tab}`);
   for (const a of document.querySelectorAll('.tabbar a')) a.classList.toggle('on', a.dataset.tab === tab);
   window.scrollTo(0, 0);
+  onTabShown(tab);
 }
 
 async function init() {
@@ -308,6 +310,7 @@ async function init() {
   $('#sample-banner').hidden = !data.sample;
 
   renderEV(); renderNums(); renderPack(); renderBudget();
+  await initDraw(data);
   $('#tab-nums').addEventListener('click', onNumsClick);
   $('#tab-pack').addEventListener('click', onPackClick);
   $('#tab-budget').addEventListener('change', onBudgetChange);

@@ -8,6 +8,10 @@ const ROOT = new URL('..', import.meta.url);
 const OUT = new URL('app/data/latest.json', ROOT);
 const RAW = new URL('app/data/raw-sample.json', ROOT);
 const OVERRIDES = new URL('app/data/overrides.json', ROOT);
+const HISTORY = new URL('app/data/history.json', ROOT);
+const FIRST_MONTH = '2004-01'; // 大樂透 2004 年 1 月開賣
+const RECENT_MONTHS = 2; // 最近幾個月每次都重抓（新開獎、獎金更新）
+const TIER_KEYS = ['jackpotAssign', 'secondAssign', 'thirdAssign', 'fourthAssign', 'fifthAssign', 'sixthAssign', 'seventhAssign', 'normalAssign'];
 const MIN_DRAWS = 60;
 const MAX_MONTHS = 12;
 const DRAW_DAYS = [2, 5]; // 每週二、五開獎
@@ -116,6 +120,74 @@ export function merge(rawDraws, prev, overrides) {
   return { next, draws: merged };
 }
 
+// ---------- 全部歷史（app/data/history.json，給「開獎」分頁查詢與兌獎） ----------
+// 每期另存兌獎截止日與頭獎～普獎的單注獎金、中獎注數（順序同 TIER_KEYS）
+export function parseHistoryItem(item) {
+  const d = parseItem(item);
+  return {
+    period: d.period,
+    date: d.date,
+    numbers: d.numbers,
+    special: d.special,
+    redeemBy: item.redeemableDate ? String(item.redeemableDate).slice(0, 10) : null,
+    prize: TIER_KEYS.map((k) => num(item[k]?.perPrize)),
+    winners: TIER_KEYS.map((k) => num(item[k]?.winnerCount)),
+  };
+}
+
+// FIRST_MONTH 到 now（台灣時間）所在月份，由舊到新
+export function allMonths(now, first = FIRST_MONTH) {
+  return monthsBack(now, 12 * 40).filter((m) => m >= first).reverse();
+}
+
+// 要抓哪些月份：最近 RECENT_MONTHS 個月必抓；更早的月份已有資料或確定沒資料就跳過
+export function monthsToFetch(history, months) {
+  const have = new Set(history.draws.map((d) => d.date.slice(0, 7)));
+  const empty = new Set(history.emptyMonths ?? []);
+  const recent = new Set(months.slice(-RECENT_MONTHS));
+  return months.filter((m) => recent.has(m) || (!have.has(m) && !empty.has(m)));
+}
+
+// 以期別合併（新資料覆蓋舊資料），由新到舊排序
+export function mergeHistory(oldDraws, newDraws) {
+  const byPeriod = new Map(oldDraws.map((d) => [d.period, d]));
+  for (const d of newDraws) byPeriod.set(d.period, d);
+  return [...byPeriod.values()].sort((a, b) => Number(b.period) - Number(a.period));
+}
+
+// 一期一行，檔案小又方便看 diff
+export function formatHistory(h) {
+  return `{"updatedAt":${JSON.stringify(h.updatedAt)},"emptyMonths":${JSON.stringify(h.emptyMonths)},"draws":[\n${h.draws.map((d) => JSON.stringify(d)).join(',\n')}\n]}\n`;
+}
+
+async function updateHistory(getMonth) {
+  const prev = await readJSON(HISTORY, null);
+  const history = { draws: prev?.draws ?? [], emptyMonths: prev?.emptyMonths ?? [] };
+  const months = allMonths(new Date());
+  const todo = monthsToFetch(history, months);
+  const recent = new Set(months.slice(-RECENT_MONTHS));
+  const fresh = [], failed = [];
+  for (const m of todo) {
+    let items;
+    try { items = await getMonth(m); } catch (e) { failed.push(m); console.warn(e.message); continue; }
+    if (!items.length && !recent.has(m)) history.emptyMonths.push(m);
+    for (const it of items) {
+      try { fresh.push(parseHistoryItem(it)); } catch (e) { console.warn(`略過：${e.message}`); }
+    }
+    if (!recent.has(m)) await new Promise((r) => setTimeout(r, 300)); // 補抓舊資料時放慢，別給 API 太大壓力
+  }
+  history.draws = mergeHistory(history.draws, fresh);
+  history.emptyMonths = [...new Set(history.emptyMonths)].sort();
+  if (failed.length) console.warn(`這些月份抓取失敗，下次再補：${failed.join(', ')}`);
+  if (prev && JSON.stringify(prev.draws) === JSON.stringify(history.draws) && JSON.stringify(prev.emptyMonths) === JSON.stringify(history.emptyMonths)) {
+    console.log(`歷史資料沒有變動（${history.draws.length} 期）`);
+    return;
+  }
+  history.updatedAt = new Date().toISOString();
+  await writeFile(HISTORY, formatHistory(history));
+  console.log(`歷史資料已更新：共 ${history.draws.length} 期（抓了 ${todo.length} 個月）`);
+}
+
 async function fetchMonth(month) {
   const url = `${API}?period&month=${month}&pageNum=1&pageSize=50`;
   for (let attempt = 1; ; attempt++) {
@@ -133,9 +205,15 @@ async function fetchMonth(month) {
 }
 
 async function main() {
+  // 同一個月份只抓一次，最新資料與歷史資料共用
+  const cache = new Map();
+  const getMonth = async (m) => {
+    if (!cache.has(m)) cache.set(m, await fetchMonth(m));
+    return cache.get(m);
+  };
   const items = [];
   for (const month of monthsBack(new Date(), MAX_MONTHS)) {
-    items.push(...(await fetchMonth(month)));
+    items.push(...(await getMonth(month)));
     if (items.length >= MIN_DRAWS) break;
   }
   if (items.length === 0) throw new Error('API 沒有回傳任何開獎資料');
@@ -149,6 +227,8 @@ async function main() {
   const prev = await readJSON(OUT, null);
   const overrides = await readJSON(OVERRIDES, {});
   const { next, draws: merged } = merge(draws, prev, overrides);
+
+  await updateHistory(getMonth);
 
   // 開獎資料沒變就不更新時間，避免每次排程都產生 commit
   if (prev && !prev.sample && JSON.stringify(prev.draws) === JSON.stringify(merged) && JSON.stringify(prev.next) === JSON.stringify(next)) {

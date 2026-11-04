@@ -1,6 +1,6 @@
 // 離線快取：程式檔先用快取，開獎資料先抓網路、失敗才用快取。
-const CACHE = 'lotto-v3';
-const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'picker.js', 'stats.js', 'manifest.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png', '../split-risk/split-risk.js'];
+const CACHE = 'lotto-v4';
+const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'picker.js', 'checker.js', 'draw-tab.js', 'stats.js', 'manifest.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png', '../split-risk/split-risk.js'];
 
 self.addEventListener('install', (e) => e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL))));
 self.addEventListener('activate', (e) =>
@@ -8,7 +8,7 @@ self.addEventListener('activate', (e) =>
 
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  if (url.pathname.endsWith('/data/latest.json')) {
+  if (url.pathname.endsWith('/data/latest.json') || url.pathname.endsWith('/data/history.json')) {
     e.respondWith(fetch(e.request).then((res) => {
       const copy = res.clone();
       caches.open(CACHE).then((c) => c.put(e.request, copy));

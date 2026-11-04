@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseItem, nextDrawDate, nextPeriod, displayPeriod, estimateNext, merge, monthsBack } from './fetch-lotto.mjs';
+import { parseItem, nextDrawDate, nextPeriod, displayPeriod, estimateNext, merge, monthsBack, parseHistoryItem, allMonths, monthsToFetch, mergeHistory, formatHistory } from './fetch-lotto.mjs';
+import { readFileSync } from 'node:fs';
 
 // 依 2026-11-04 台彩 API 實際回傳格式（app/data/raw-sample.json）
 const item = (period, date, nums, jp = {}, sellAmount = 100000000) => ({
@@ -58,4 +59,38 @@ test('merge 套用 overrides 的官方下期頭獎', () => {
   const { next } = merge(draws, null, { next: { period: '115103', jackpot: 150000000 } });
   assert.equal(next.jackpot, 150000000);
   assert.equal(next.jackpotEstimated, false);
+});
+
+test('parseHistoryItem 存下兌獎截止日與各獎項單注獎金', () => {
+  const raw = JSON.parse(readFileSync(new URL('../app/data/raw-sample.json', import.meta.url), 'utf8'));
+  const d = parseHistoryItem(raw[0]);
+  assert.equal(d.period, '115102');
+  assert.equal(d.redeemBy, '2027-02-03');
+  assert.deepEqual(d.prize, [0, 937717, 74803, 19093, 2000, 1000, 400, 400]);
+  assert.deepEqual(d.winners, [0, 2, 27, 68, 1929, 2414, 25913, 36040]);
+});
+
+test('allMonths 從 2004-01 到本月', () => {
+  const m = allMonths(new Date('2026-11-04T12:00:00Z'));
+  assert.equal(m[0], '2004-01');
+  assert.equal(m.at(-1), '2026-11');
+  assert.equal(m.length, 23 * 12 - 1);
+});
+
+test('monthsToFetch：最近兩個月必抓，已有或確定沒資料的舊月份跳過', () => {
+  const months = ['2026-08', '2026-09', '2026-10', '2026-11'];
+  const history = { draws: [{ date: '2026-09-01' }, { date: '2026-10-02' }, { date: '2026-11-03' }], emptyMonths: ['2026-08'] };
+  assert.deepEqual(monthsToFetch(history, months), ['2026-10', '2026-11']);
+  assert.deepEqual(monthsToFetch({ draws: [] }, months), months);
+});
+
+test('mergeHistory 新資料覆蓋舊資料並由新到舊排序', () => {
+  const out = mergeHistory([{ period: '99104', v: 1 }, { period: '100001', v: 1 }], [{ period: '100001', v: 2 }, { period: '100002', v: 2 }]);
+  assert.deepEqual(out.map((d) => d.period), ['100002', '100001', '99104']);
+  assert.equal(out[1].v, 2);
+});
+
+test('formatHistory 輸出合法 JSON', () => {
+  const h = { updatedAt: 'x', emptyMonths: [], draws: [{ period: '1' }, { period: '2' }] };
+  assert.deepEqual(JSON.parse(formatHistory(h)), h);
 });
