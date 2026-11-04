@@ -7,6 +7,10 @@ on:
     - cron: '0 16 * * 2,5'   # 24:00 台灣
     - cron: '0 1 * * *'      # 09:00 台灣
   workflow_dispatch:
+  # 抓資料程式有改動（例如合併新功能）時立刻跑一次，第一次會補抓全部歷史
+  push:
+    branches: [main]
+    paths: ['scripts/**']
 
 permissions:
   contents: write
@@ -24,7 +28,7 @@ jobs:
         with:
           node-version: 22
       - name: 測試
-        run: node --test scripts/fetch-lotto.test.mjs app/picker.test.mjs split-risk/split-risk.test.mjs
+        run: node --test scripts/fetch-lotto.test.mjs app/picker.test.mjs app/checker.test.mjs split-risk/split-risk.test.mjs
       - name: 抓取台彩資料
         run: node scripts/fetch-lotto.mjs
       - name: 有變動才提交
