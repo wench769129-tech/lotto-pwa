@@ -50,7 +50,7 @@ function prizeTable(d) {
   if (!d.prize) return '<p class="note">各獎項獎金資料更新中。</p>';
   const rows = TIERS.map((t, i) => {
     const w = d.winners?.[i], p = d.prize[i];
-    return `<tr><td>${t.name}<br><small class="note">${t.rule}</small></td><td>${w == null ? '—' : fmt(w)}</td><td>${p ? fmt(p) : w === 0 ? '槓龜' : '—'}</td></tr>`;
+    return `<tr><td>${t.name}<br><small class="note">${t.rule}</small></td><td>${w == null ? '—' : fmt(w)}</td><td>${p ? fmt(p) : w === 0 && i < 4 ? '槓龜' : '—'}</td></tr>`;
   }).join('');
   return `<table class="prize"><tr><th>獎項</th><th>中獎注數</th><th>單注獎金（元）</th></tr>${rows}</table>`;
 }

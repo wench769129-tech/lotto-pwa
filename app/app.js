@@ -301,6 +301,23 @@ function showTab() {
   onTabShown(tab);
 }
 
+// 有新版 sw.js 時自動接手並重新整理一次；App 從背景切回來時也檢查一次有沒有新版
+function registerSW() {
+  if (!('serviceWorker' in navigator)) return;
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || reloaded) return; // 第一次安裝不用重新整理
+    reloaded = true;
+    location.reload();
+  });
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') reg.update().catch(() => {});
+    });
+  });
+}
+
 async function init() {
   data = await fetch('data/latest.json', { cache: 'no-cache' }).then((r) => r.json());
   const upd = new Date(data.updatedAt);
@@ -317,7 +334,7 @@ async function init() {
   $('#tab-budget').addEventListener('click', onBudgetClick);
   addEventListener('hashchange', showTab);
   showTab();
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+  registerSW();
 }
 
 init();
