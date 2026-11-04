@@ -1,16 +1,16 @@
 {
  "sample": false,
- "updatedAt": "2026-11-04T15:38:19.102Z",
+ "updatedAt": "2026-11-04T15:41:34.479Z",
  "next": {
-  "period": "115000103",
+  "period": "115103",
   "date": "2026-11-06",
-  "jackpot": 160000000,
-  "estSales": 150000000,
+  "jackpot": 184125693,
+  "estSales": 108028200,
   "jackpotEstimated": true
  },
  "draws": [
   {
-   "period": "115000102",
+   "period": "115102",
    "date": "2026-11-03",
    "numbers": [
     2,
@@ -21,11 +21,11 @@
     39
    ],
    "special": 31,
-   "jackpotPool": 196480156,
-   "jackpotWinners": null
+   "jackpotPool": 160233441,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000101",
+   "period": "115101",
    "date": "2026-10-30",
    "numbers": [
     4,
@@ -36,11 +36,11 @@
     37
    ],
    "special": 48,
-   "jackpotPool": 171501896,
-   "jackpotWinners": null
+   "jackpotPool": 136574100,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000100",
+   "period": "115100",
    "date": "2026-10-27",
    "numbers": [
     8,
@@ -51,11 +51,11 @@
     41
    ],
    "special": 9,
-   "jackpotPool": 146058816,
-   "jackpotWinners": null
+   "jackpotPool": 112419016,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000099",
+   "period": "115099",
    "date": "2026-10-23",
    "numbers": [
     9,
@@ -66,11 +66,11 @@
     45
    ],
    "special": 2,
-   "jackpotPool": 131903906,
-   "jackpotWinners": null
+   "jackpotPool": 90946864,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000098",
+   "period": "115098",
    "date": "2026-10-20",
    "numbers": [
     2,
@@ -81,11 +81,11 @@
     43
    ],
    "special": 6,
-   "jackpotPool": 107469026,
-   "jackpotWinners": null
+   "jackpotPool": 62319566,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000097",
+   "period": "115097",
    "date": "2026-10-16",
    "numbers": [
     6,
@@ -96,11 +96,11 @@
     49
    ],
    "special": 30,
-   "jackpotPool": 73455228,
-   "jackpotWinners": null
+   "jackpotPool": 31253010,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000096",
+   "period": "115096",
    "date": "2026-10-13",
    "numbers": [
     3,
@@ -111,11 +111,11 @@
     48
    ],
    "special": 32,
-   "jackpotPool": 407931576,
-   "jackpotWinners": null
+   "jackpotPool": 350262097,
+   "jackpotWinners": 1
   },
   {
-   "period": "115000095",
+   "period": "115095",
    "date": "2026-10-09",
    "numbers": [
     3,
@@ -126,11 +126,11 @@
     41
    ],
    "special": 27,
-   "jackpotPool": 370100504,
-   "jackpotWinners": null
+   "jackpotPool": 304365428,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000094",
+   "period": "115094",
    "date": "2026-10-06",
    "numbers": [
     4,
@@ -141,11 +141,11 @@
     39
    ],
    "special": 23,
-   "jackpotPool": 334058332,
-   "jackpotWinners": null
+   "jackpotPool": 273310776,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000093",
+   "period": "115093",
    "date": "2026-10-02",
    "numbers": [
     4,
@@ -156,11 +156,11 @@
     47
    ],
    "special": 42,
-   "jackpotPool": 288455900,
-   "jackpotWinners": null
+   "jackpotPool": 235259418,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000092",
+   "period": "115092",
    "date": "2026-09-29",
    "numbers": [
     1,
@@ -171,11 +171,11 @@
     38
    ],
    "special": 27,
-   "jackpotPool": 255224532,
-   "jackpotWinners": null
+   "jackpotPool": 195255800,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000091",
+   "period": "115091",
    "date": "2026-09-25",
    "numbers": [
     5,
@@ -186,11 +186,11 @@
     33
    ],
    "special": 40,
-   "jackpotPool": 224036876,
-   "jackpotWinners": null
+   "jackpotPool": 158812580,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000090",
+   "period": "115090",
    "date": "2026-09-22",
    "numbers": [
     14,
@@ -201,11 +201,11 @@
     45
    ],
    "special": 10,
-   "jackpotPool": 176297357,
-   "jackpotWinners": null
+   "jackpotPool": 122219188,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000089",
+   "period": "115089",
    "date": "2026-09-18",
    "numbers": [
     1,
@@ -216,11 +216,11 @@
     35
    ],
    "special": 16,
-   "jackpotPool": 138219023,
-   "jackpotWinners": null
+   "jackpotPool": 83199177,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000088",
+   "period": "115088",
    "date": "2026-09-15",
    "numbers": [
     2,
@@ -231,11 +231,11 @@
     39
    ],
    "special": 7,
-   "jackpotPool": 101604095,
-   "jackpotWinners": null
+   "jackpotPool": 48422656,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000087",
+   "period": "115087",
    "date": "2026-09-11",
    "numbers": [
     12,
@@ -246,11 +246,11 @@
     48
    ],
    "special": 25,
-   "jackpotPool": 52777648,
-   "jackpotWinners": null
+   "jackpotPool": 20341123,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000086",
+   "period": "115086",
    "date": "2026-09-08",
    "numbers": [
     3,
@@ -261,11 +261,11 @@
     49
    ],
    "special": 27,
-   "jackpotPool": 293466095,
-   "jackpotWinners": null
+   "jackpotPool": 253563028,
+   "jackpotWinners": 1
   },
   {
-   "period": "115000085",
+   "period": "115085",
    "date": "2026-09-04",
    "numbers": [
     3,
@@ -276,11 +276,11 @@
     37
    ],
    "special": 19,
-   "jackpotPool": 264242065,
-   "jackpotWinners": null
+   "jackpotPool": 225754703,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000084",
+   "period": "115084",
    "date": "2026-09-01",
    "numbers": [
     10,
@@ -291,11 +291,11 @@
     48
    ],
    "special": 30,
-   "jackpotPool": 238646366,
-   "jackpotWinners": null
+   "jackpotPool": 205234837,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000083",
+   "period": "115083",
    "date": "2026-08-28",
    "numbers": [
     9,
@@ -306,11 +306,11 @@
     44
    ],
    "special": 4,
-   "jackpotPool": 220326477,
-   "jackpotWinners": null
+   "jackpotPool": 182569450,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000082",
+   "period": "115082",
    "date": "2026-08-25",
    "numbers": [
     12,
@@ -321,11 +321,11 @@
     40
    ],
    "special": 6,
-   "jackpotPool": 190527097,
-   "jackpotWinners": null
+   "jackpotPool": 159648289,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000081",
+   "period": "115081",
    "date": "2026-08-21",
    "numbers": [
     8,
@@ -336,11 +336,11 @@
     47
    ],
    "special": 30,
-   "jackpotPool": 171398556,
-   "jackpotWinners": null
+   "jackpotPool": 139517257,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000080",
+   "period": "115080",
    "date": "2026-08-18",
    "numbers": [
     1,
@@ -351,11 +351,11 @@
     43
    ],
    "special": 2,
-   "jackpotPool": 152164303,
-   "jackpotWinners": null
+   "jackpotPool": 119917896,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000079",
+   "period": "115079",
    "date": "2026-08-14",
    "numbers": [
     5,
@@ -366,11 +366,11 @@
     35
    ],
    "special": 27,
-   "jackpotPool": 130683982,
-   "jackpotWinners": null
+   "jackpotPool": 96909579,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000078",
+   "period": "115078",
    "date": "2026-08-11",
    "numbers": [
     8,
@@ -381,11 +381,11 @@
     46
    ],
    "special": 10,
-   "jackpotPool": 115446292,
-   "jackpotWinners": null
+   "jackpotPool": 78084190,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000077",
+   "period": "115077",
    "date": "2026-08-07",
    "numbers": [
     2,
@@ -396,11 +396,11 @@
     41
    ],
    "special": 31,
-   "jackpotPool": 99750894,
-   "jackpotWinners": null
+   "jackpotPool": 61686460,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000076",
+   "period": "115076",
    "date": "2026-08-04",
    "numbers": [
     4,
@@ -411,11 +411,11 @@
     49
    ],
    "special": 40,
-   "jackpotPool": 76773287,
-   "jackpotWinners": null
+   "jackpotPool": 42496650,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000075",
+   "period": "115075",
    "date": "2026-07-31",
    "numbers": [
     11,
@@ -426,11 +426,11 @@
     44
    ],
    "special": 10,
-   "jackpotPool": 55119680,
-   "jackpotWinners": null
+   "jackpotPool": 21642981,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000074",
+   "period": "115074",
    "date": "2026-07-28",
    "numbers": [
     8,
@@ -441,11 +441,11 @@
     43
    ],
    "special": 47,
-   "jackpotPool": 1028285730,
-   "jackpotWinners": null
+   "jackpotPool": 910176459,
+   "jackpotWinners": 1
   },
   {
-   "period": "115000073",
+   "period": "115073",
    "date": "2026-07-24",
    "numbers": [
     3,
@@ -456,11 +456,11 @@
     44
    ],
    "special": 40,
-   "jackpotPool": 931280610,
-   "jackpotWinners": null
+   "jackpotPool": 829234850,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000072",
+   "period": "115072",
    "date": "2026-07-21",
    "numbers": [
     2,
@@ -471,11 +471,11 @@
     46
    ],
    "special": 11,
-   "jackpotPool": 856410671,
-   "jackpotWinners": null
+   "jackpotPool": 752576882,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000071",
+   "period": "115071",
    "date": "2026-07-17",
    "numbers": [
     1,
@@ -486,11 +486,11 @@
     26
    ],
    "special": 24,
-   "jackpotPool": 804565838,
-   "jackpotWinners": null
+   "jackpotPool": 693322823,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000070",
+   "period": "115070",
    "date": "2026-07-14",
    "numbers": [
     10,
@@ -501,11 +501,11 @@
     46
    ],
    "special": 7,
-   "jackpotPool": 722283068,
-   "jackpotWinners": null
+   "jackpotPool": 643445802,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000069",
+   "period": "115069",
    "date": "2026-07-10",
    "numbers": [
     3,
@@ -516,11 +516,11 @@
     49
    ],
    "special": 13,
-   "jackpotPool": 663295704,
-   "jackpotWinners": null
+   "jackpotPool": 590529992,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000068",
+   "period": "115068",
    "date": "2026-07-07",
    "numbers": [
     8,
@@ -531,11 +531,11 @@
     42
    ],
    "special": 37,
-   "jackpotPool": 616468418,
-   "jackpotWinners": null
+   "jackpotPool": 540339108,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000067",
+   "period": "115067",
    "date": "2026-07-03",
    "numbers": [
     11,
@@ -546,11 +546,11 @@
     47
    ],
    "special": 15,
-   "jackpotPool": 558591364,
-   "jackpotWinners": null
+   "jackpotPool": 490957298,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000066",
+   "period": "115066",
    "date": "2026-06-30",
    "numbers": [
     4,
@@ -561,11 +561,11 @@
     45
    ],
    "special": 14,
-   "jackpotPool": 511818423,
-   "jackpotWinners": null
+   "jackpotPool": 443235732,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000065",
+   "period": "115065",
    "date": "2026-06-26",
    "numbers": [
     11,
@@ -576,11 +576,11 @@
     41
    ],
    "special": 1,
-   "jackpotPool": 454840561,
-   "jackpotWinners": null
+   "jackpotPool": 396514451,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000064",
+   "period": "115064",
    "date": "2026-06-23",
    "numbers": [
     12,
@@ -591,11 +591,11 @@
     39
    ],
    "special": 30,
-   "jackpotPool": 424971577,
-   "jackpotWinners": null
+   "jackpotPool": 359726017,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000063",
+   "period": "115063",
    "date": "2026-06-19",
    "numbers": [
     4,
@@ -606,11 +606,11 @@
     48
    ],
    "special": 38,
-   "jackpotPool": 383926029,
-   "jackpotWinners": null
+   "jackpotPool": 314896801,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000062",
+   "period": "115062",
    "date": "2026-06-16",
    "numbers": [
     1,
@@ -621,11 +621,11 @@
     36
    ],
    "special": 41,
-   "jackpotPool": 336898701,
-   "jackpotWinners": null
+   "jackpotPool": 274498921,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000061",
+   "period": "115061",
    "date": "2026-06-12",
    "numbers": [
     1,
@@ -636,11 +636,11 @@
     49
    ],
    "special": 3,
-   "jackpotPool": 296087050,
-   "jackpotWinners": null
+   "jackpotPool": 244116193,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000060",
+   "period": "115060",
    "date": "2026-06-09",
    "numbers": [
     13,
@@ -651,11 +651,11 @@
     46
    ],
    "special": 31,
-   "jackpotPool": 257167347,
-   "jackpotWinners": null
+   "jackpotPool": 210680890,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000059",
+   "period": "115059",
    "date": "2026-06-05",
    "numbers": [
     12,
@@ -666,11 +666,11 @@
     44
    ],
    "special": 34,
-   "jackpotPool": 224988362,
-   "jackpotWinners": null
+   "jackpotPool": 177040587,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000058",
+   "period": "115058",
    "date": "2026-06-02",
    "numbers": [
     8,
@@ -681,11 +681,11 @@
     49
    ],
    "special": 2,
-   "jackpotPool": 187675001,
-   "jackpotWinners": null
+   "jackpotPool": 146581399,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000057",
+   "period": "115057",
    "date": "2026-05-29",
    "numbers": [
     20,
@@ -696,11 +696,11 @@
     49
    ],
    "special": 30,
-   "jackpotPool": 158566424,
-   "jackpotWinners": null
+   "jackpotPool": 125730656,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000056",
+   "period": "115056",
    "date": "2026-05-26",
    "numbers": [
     3,
@@ -711,11 +711,11 @@
     48
    ],
    "special": 11,
-   "jackpotPool": 135082185,
-   "jackpotWinners": null
+   "jackpotPool": 103629462,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000055",
+   "period": "115055",
    "date": "2026-05-22",
    "numbers": [
     12,
@@ -726,11 +726,11 @@
     48
    ],
    "special": 30,
-   "jackpotPool": 113210853,
-   "jackpotWinners": null
+   "jackpotPool": 83046488,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000054",
+   "period": "115054",
    "date": "2026-05-19",
    "numbers": [
     4,
@@ -741,11 +741,11 @@
     47
    ],
    "special": 27,
-   "jackpotPool": 93882358,
-   "jackpotWinners": null
+   "jackpotPool": 62471941,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000053",
+   "period": "115053",
    "date": "2026-05-15",
    "numbers": [
     16,
@@ -756,11 +756,11 @@
     43
    ],
    "special": 1,
-   "jackpotPool": 70777426,
-   "jackpotWinners": null
+   "jackpotPool": 42215134,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000052",
+   "period": "115052",
    "date": "2026-05-12",
    "numbers": [
     6,
@@ -771,11 +771,11 @@
     36
    ],
    "special": 34,
-   "jackpotPool": 56524442,
-   "jackpotWinners": null
+   "jackpotPool": 19902518,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000051",
+   "period": "115051",
    "date": "2026-05-08",
    "numbers": [
     10,
@@ -786,11 +786,11 @@
     43
    ],
    "special": 48,
-   "jackpotPool": 132717788,
-   "jackpotWinners": null
+   "jackpotPool": 100377592,
+   "jackpotWinners": 1
   },
   {
-   "period": "115000050",
+   "period": "115050",
    "date": "2026-05-05",
    "numbers": [
     4,
@@ -801,11 +801,11 @@
     37
    ],
    "special": 15,
-   "jackpotPool": 109953370,
-   "jackpotWinners": null
+   "jackpotPool": 77731921,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000049",
+   "period": "115049",
    "date": "2026-05-01",
    "numbers": [
     7,
@@ -816,11 +816,11 @@
     48
    ],
    "special": 45,
-   "jackpotPool": 89618996,
-   "jackpotWinners": null
+   "jackpotPool": 60668414,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000048",
+   "period": "115048",
    "date": "2026-04-28",
    "numbers": [
     6,
@@ -831,11 +831,11 @@
     32
    ],
    "special": 7,
-   "jackpotPool": 74611154,
-   "jackpotWinners": null
+   "jackpotPool": 38923008,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000047",
+   "period": "115047",
    "date": "2026-04-24",
    "numbers": [
     7,
@@ -846,11 +846,11 @@
     47
    ],
    "special": 34,
-   "jackpotPool": 48754020,
-   "jackpotWinners": null
+   "jackpotPool": 19720852,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000046",
+   "period": "115046",
    "date": "2026-04-21",
    "numbers": [
     1,
@@ -861,11 +861,11 @@
     40
    ],
    "special": 22,
-   "jackpotPool": 262352214,
-   "jackpotWinners": null
+   "jackpotPool": 220705904,
+   "jackpotWinners": 1
   },
   {
-   "period": "115000045",
+   "period": "115045",
    "date": "2026-04-17",
    "numbers": [
     7,
@@ -876,11 +876,11 @@
     45
    ],
    "special": 18,
-   "jackpotPool": 233897240,
-   "jackpotWinners": null
+   "jackpotPool": 193928293,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000044",
+   "period": "115044",
    "date": "2026-04-14",
    "numbers": [
     4,
@@ -891,11 +891,11 @@
     43
    ],
    "special": 13,
-   "jackpotPool": 209877670,
-   "jackpotWinners": null
+   "jackpotPool": 171638204,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000043",
+   "period": "115043",
    "date": "2026-04-10",
    "numbers": [
     4,
@@ -906,11 +906,11 @@
     40
    ],
    "special": 30,
-   "jackpotPool": 187532185,
-   "jackpotWinners": null
+   "jackpotPool": 148009150,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000042",
+   "period": "115042",
    "date": "2026-04-07",
    "numbers": [
     1,
@@ -921,11 +921,11 @@
     26
    ],
    "special": 47,
-   "jackpotPool": 160407840,
-   "jackpotWinners": null
+   "jackpotPool": 126351461,
+   "jackpotWinners": 0
   },
   {
-   "period": "115000041",
+   "period": "115041",
    "date": "2026-04-03",
    "numbers": [
     5,
@@ -936,8 +936,8 @@
     48
    ],
    "special": 8,
-   "jackpotPool": 143893374,
-   "jackpotWinners": null
+   "jackpotPool": 107275628,
+   "jackpotWinners": 0
   }
  ]
 }
