@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>撞號風險示範</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1a1a1a; --bg: #fff; --muted: #666; --card: #f4f4f5; --hi: #c0392b; --mid: #d68910; --lo: #1e8449; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #eee; --bg: #121212; --muted: #aaa; --card: #1f1f22; --hi: #ff6b5b; --mid: #f5b041; --lo: #58d68d; } }
+  body { font-family: system-ui, "Noto Sans TC", sans-serif; margin: 0 auto; max-width: 480px; padding: 16px; color: var(--fg); background: var(--bg); }
+  h2 { font-size: 1rem; border-left: 4px solid currentColor; padding-left: 8px; }
+  .nums { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  input { font-size: 1rem; padding: 8px; width: 100%; box-sizing: border-box; text-align: center; }
+  label { display: block; margin: 8px 0 4px; color: var(--muted); font-size: .9rem; }
+  button { margin-top: 12px; width: 100%; padding: 12px; font-size: 1rem; }
+  .card { background: var(--card); border-radius: 12px; padding: 12px 16px; margin-top: 16px; }
+  .row { display: flex; justify-content: space-between; padding: 4px 0; }
+  .dots { font-size: 1.3rem; letter-spacing: 2px; }
+  .high { color: var(--hi); } .medium { color: var(--mid); } .low { color: var(--lo); }
+  .note { color: var(--muted); font-size: .85rem; }
+  .err { color: var(--hi); }
+</style>
+</head>
+<body>
+<h2>跟別人撞號的風險</h2>
+<label>你的 6 個號碼</label>
+<div class="nums" id="nums">
+  <input inputmode="numeric" value="1"><input inputmode="numeric" value="4"><input inputmode="numeric" value="7">
+  <input inputmode="numeric" value="11"><input inputmode="numeric" value="13"><input inputmode="numeric" value="29">
+</div>
+<label>下期頭獎（億元）</label><input id="jackpot" inputmode="decimal" value="1.6">
+<label>下期預估銷售額（億元，估計）</label><input id="sales" inputmode="decimal" value="1.5">
+<label>上一期正選號（可留空，用空白分隔）</label><input id="last" value="4 22 25 30 34 37">
+<button id="go">分析</button>
+<div id="out"></div>
+
+<script type="module">
+import { analyzeCombo } from './split-risk.js';
+
+const $ = (id) => document.getElementById(id);
+const yuan = (n) => (n >= 1e8 ? (n / 1e8).toFixed(2) + ' 億' : n >= 1e4 ? Math.round(n / 1e4).toLocaleString() + ' 萬' : n.toFixed(2)) + ' 元';
+const LEVEL = { high: ['●●●●●', '高'], medium: ['●●●○○', '中'], low: ['●○○○○', '低'] };
+
+function run() {
+  try {
+    const nums = [...$('nums').querySelectorAll('input')].map((i) => Number(i.value));
+    const last = $('last').value.trim() ? $('last').value.trim().split(/\s+/).map(Number) : null;
+    const r = analyzeCombo(nums, { jackpot: Number($('jackpot').value) * 1e8, sales: Number($('sales').value) * 1e8, lastDraw: last });
+    const [dots, word] = LEVEL[r.riskLevel];
+    const diff = r.evVsAverage;
+    $('out').innerHTML = `
+      <div class="card">
+        <div class="dots ${r.riskLevel}">${dots} ${word}</div>
+        <div class="row"><span>熱門倍數（估計）</span><b>${r.multiplier.toFixed(2)} 倍</b></div>
+        <div class="row"><span>預估同組的其他注數</span><b>${r.expectedSharers.toFixed(2)} 注</b></div>
+        <div class="row"><span>中頭獎時獨得機率</span><b>${(r.soloChance * 100).toFixed(0)}%</b></div>
+        <div class="row"><span>中頭獎時預估實拿</span><b>${yuan(r.takeHomeIfWin)}</b></div>
+        <div class="row"><span>平均組合中頭獎實拿</span><b>${yuan(r.baseline.takeHomeIfWin)}</b></div>
+        <div class="row"><span>每注稅後期望值</span><b>${r.ev.toFixed(2)} 元</b></div>
+        <div class="row"><span>比平均組合</span><b class="${diff < 0 ? 'high' : 'low'}">${diff >= 0 ? '+' : ''}${diff.toFixed(2)} 元</b></div>
+      </div>
+      <div class="card">
+        <b>為什麼</b>
+        <ul>${r.features.length ? r.features.map((f) => `<li>${f.label}</li>`).join('') : '<li>沒有明顯的熱門特徵</li>'}</ul>
+        <p class="note">中獎機率每組都一樣（1/13,983,816）。熱門組合中頭獎時較多人分，所以期望值較低。熱門倍數是依選號習慣估計，台彩沒有公布各組號碼的購買注數；電腦選號比例假設為 50%。</p>
+      </div>`;
+  } catch (e) {
+    $('out').innerHTML = `<p class="err">${e.message}</p>`;
+  }
+}
+$('go').addEventListener('click', run);
+run();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+name: 更新開獎資料
+
+on:
+  schedule:
+    # 大樂透每週二、五約 20:30（台灣時間）開獎；開獎後抓兩次，另每天早上補抓一次
+    - cron: '0 14 * * 2,5'   # 22:00 台灣
+    - cron: '0 16 * * 2,5'   # 24:00 台灣
+    - cron: '0 1 * * *'      # 09:00 台灣
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 測試
+        run: node --test scripts/fetch-lotto.test.mjs app/picker.test.mjs split-risk/split-risk.test.mjs
+      - name: 抓取台彩資料
+        run: node scripts/fetch-lotto.mjs
+      - name: 有變動才提交
+        run: |
+          git add app/data
+          if git diff --cached --quiet; then
+            echo "資料沒有變動"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "更新開獎資料"
+            git push
+          fi

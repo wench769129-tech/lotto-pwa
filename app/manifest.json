@@ -1,0 +1,10 @@
+{
+  "name": "大樂透分析",
+  "short_name": "大樂透",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#2563eb",
+  "lang": "zh-Hant",
+  "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

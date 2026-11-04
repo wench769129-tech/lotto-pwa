@@ -1,0 +1,7 @@
+{
+ "_說明": "API 沒提供的頭獎金額在這裡手動補。draws 以期別為鍵；next 只在 period 等於下一期時才套用。",
+ "draws": {
+  "115101": { "jackpotPool": 130000000, "jackpotWinners": 0 }
+ },
+ "next": {}
+}
