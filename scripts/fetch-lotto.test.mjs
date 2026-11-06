@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { parseItem, nextDrawDate, nextPeriod, displayPeriod, estimateNext, merge, monthsBack, parseHistoryItem, allMonths, monthsToFetch, mergeHistory, formatHistory } from './fetch-lotto.mjs';
 import { readFileSync } from 'node:fs';
 
-// 依 2026-11-04 台彩 API 實際回傳格式（app/data/raw-sample.json）
+// 依 2026-11-04 台彩 API 實際回傳格式（固定樣本 scripts/fixtures/raw-115102.json；app/data/raw-sample.json 每次抓資料會被覆蓋，不能拿來測試）
 const item = (period, date, nums, jp = {}, sellAmount = 100000000) => ({
   period, lotteryDate: `${date}T00:00:00`, drawNumberSize: nums, sellAmount,
   jackpotAssign: { prize: 22000000, lastPrize: 0, winnerCount: 0, perPrize: 0, ...jp },
@@ -62,7 +62,7 @@ test('merge 套用 overrides 的官方下期頭獎', () => {
 });
 
 test('parseHistoryItem 存下兌獎截止日與各獎項單注獎金', () => {
-  const raw = JSON.parse(readFileSync(new URL('../app/data/raw-sample.json', import.meta.url), 'utf8'));
+  const raw = JSON.parse(readFileSync(new URL('./fixtures/raw-115102.json', import.meta.url), 'utf8'));
   const d = parseHistoryItem(raw[0]);
   assert.equal(d.period, '115102');
   assert.equal(d.redeemBy, '2027-02-03');
