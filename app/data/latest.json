@@ -1,14 +1,29 @@
 {
  "sample": false,
- "updatedAt": "2026-11-06T14:49:58.146Z",
+ "updatedAt": "2026-11-10T14:47:35.526Z",
  "next": {
-  "period": "115104",
-  "date": "2026-11-10",
-  "jackpot": 23588170,
-  "estSales": 104341713,
+  "period": "115105",
+  "date": "2026-11-13",
+  "jackpot": 45690482,
+  "estSales": 103409663,
   "jackpotEstimated": true
  },
  "draws": [
+  {
+   "period": "115104",
+   "date": "2026-11-10",
+   "numbers": [
+    11,
+    23,
+    30,
+    32,
+    40,
+    41
+   ],
+   "special": 28,
+   "jackpotPool": 21839191,
+   "jackpotWinners": 0
+  },
   {
    "period": "115103",
    "date": "2026-11-06",
