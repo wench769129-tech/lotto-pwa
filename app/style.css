@@ -120,3 +120,17 @@ select { font: inherit; color: var(--fg); background: var(--card); border: 1px s
 .hd .plus { font-size: .7rem; }
 table.prize td small { font-size: .72rem; }
 .more { width: 100%; margin-top: 8px; }
+
+/* ---------- App 內確認視窗（取代原生 confirm/alert） ---------- */
+.app-dialog { width: min(88vw, 340px); padding: 0; border: 1px solid var(--line); border-radius: 16px;
+  background: var(--card); color: var(--fg); box-shadow: 0 12px 40px rgba(0, 0, 0, .35); }
+.app-dialog::backdrop { background: rgba(0, 0, 0, .45); }
+.app-dialog form { padding: 18px 18px 14px; margin: 0; }
+.dlg-title { margin: 0 0 8px; font-size: 1.05rem; }
+.dlg-body { font-size: .95rem; line-height: 1.5; }
+.dlg-extra { margin-top: 10px; padding: 10px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
+.dlg-tk { font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
+.dlg-actions { display: flex; gap: 10px; margin-top: 16px; }
+.dlg-actions button { flex: 1; padding: 10px; font-weight: 600; }
+.dlg-ok { background: var(--accent); border-color: var(--accent); color: #fff; }
+.dlg-ok.danger { background: #dc2626; border-color: #dc2626; }

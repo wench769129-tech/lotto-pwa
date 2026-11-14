@@ -1,6 +1,7 @@
 // 「開獎」分頁：最新開獎、手動兌獎、我的彩券（自動兌獎）、歷史開獎查詢。
 // 歷史資料讀 data/history.json（全部期別＋各獎項單注獎金）；讀不到時先用 latest.json 的近期開獎頂著。
 import { TIERS, PRICE, MAX_PICK, TAX_FREE_MAX, nCr, checkTicket, validatePick, ticketStatus, summarize, mergeTickets, daysUntil } from './checker.js';
+import { appConfirm, appAlert } from './dialog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const fmt = (n) => n.toLocaleString('zh-TW');
@@ -282,10 +283,21 @@ async function importTickets(file) {
     const body = JSON.parse(await file.text());
     const { tickets, added } = mergeTickets(store.tickets, body.tickets ?? body);
     store.tickets = tickets;
-    alert(`匯入完成：新增 ${added} 張彩券`);
+    renderMine(); renderBanner(); updateBadge();
+    appAlert(`匯入完成：新增 ${added} 張彩券`);
   } catch {
-    alert('匯入失敗：檔案格式不對');
+    appAlert('匯入失敗：檔案格式不對');
   }
+}
+
+async function deleteTicket(id) {
+  const t = store.tickets.find((x) => x.id === id);
+  if (!t) return;
+  const lines = nCr(t.nums.length, 6);
+  const info = `<div class="dlg-tk">第 ${t.period} 期${lines > 1 ? `・複式 ${lines} 注` : ''}</div>
+    <div class="balls">${t.nums.map((n) => `<span class="ball">${pad(n)}</span>`).join('')}</div>`;
+  if (!(await appConfirm('確定刪除這張彩券嗎？', { html: info, ok: '刪除', danger: true }))) return;
+  store.tickets = store.tickets.filter((x) => x.id !== id);
   renderMine(); renderBanner(); updateBadge();
 }
 
@@ -301,12 +313,7 @@ function onClick(e) {
     return renderChecker();
   }
   if (btn.dataset.filter) { st.filter = btn.dataset.filter; return renderMine(); }
-  if (btn.dataset.del) {
-    if (!confirm('刪除這張彩券？')) return;
-    store.tickets = store.tickets.filter((t) => t.id !== btn.dataset.del);
-    renderMine(); renderBanner(); updateBadge();
-    return;
-  }
+  if (btn.dataset.del) return deleteTicket(btn.dataset.del);
   switch (btn.dataset.act) {
     case 'clear': st.picked.clear(); st.result = null; st.msg = ''; return renderChecker();
     case 'check': evaluate(false); renderChecker(); return $('#d-check .result, #d-check .note')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
