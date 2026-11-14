@@ -1,7 +1,7 @@
 // 離線快取：一律先抓網路（拿到最新版），網路失敗才用快取，所以改版不用清快取。
 // 新版 sw.js 安裝後立刻接手（skipWaiting + clients.claim），app.js 偵測到換手會自動重新整理一次。
-const CACHE = 'lotto-v5';
-const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'picker.js', 'stats.js', 'checker.js', 'draw-tab.js', 'manifest.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png', '../split-risk/split-risk.js'];
+const CACHE = 'lotto-v6';
+const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'picker.js', 'stats.js', 'checker.js', 'draw-tab.js', 'dialog.js', 'manifest.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png', '../split-risk/split-risk.js'];
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
