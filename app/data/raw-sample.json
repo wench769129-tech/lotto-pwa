@@ -1,5 +1,78 @@
 [
  {
+  "period": 115000107,
+  "lotteryDate": "2026-11-20T00:00:00",
+  "redeemableDate": "2027-02-22T00:00:00",
+  "drawNumberSize": [
+   1,
+   2,
+   4,
+   12,
+   16,
+   38,
+   44
+  ],
+  "drawNumberAppear": [
+   1,
+   16,
+   4,
+   38,
+   12,
+   2,
+   44
+  ],
+  "totalAmount": 141528594,
+  "sellAmount": 92818900,
+  "jackpotAssign": {
+   "prize": 37706037,
+   "lastPrize": 62293963,
+   "winnerCount": 2,
+   "perPrize": 50000000
+  },
+  "secondAssign": {
+   "prize": 1375333,
+   "lastPrize": 6900376,
+   "winnerCount": 0,
+   "perPrize": 0
+  },
+  "thirdAssign": {
+   "prize": 1481128,
+   "lastPrize": 0,
+   "winnerCount": 42,
+   "perPrize": 35264
+  },
+  "fourthAssign": {
+   "prize": 952154,
+   "lastPrize": 0,
+   "winnerCount": 82,
+   "perPrize": 11611
+  },
+  "fifthAssign": {
+   "prize": 4492000,
+   "lastPrize": 0,
+   "winnerCount": 2246,
+   "perPrize": 2000
+  },
+  "sixthAssign": {
+   "prize": 2330000,
+   "lastPrize": 0,
+   "winnerCount": 2330,
+   "perPrize": 1000
+  },
+  "seventhAssign": {
+   "prize": 9113600,
+   "lastPrize": 0,
+   "winnerCount": 22784,
+   "perPrize": 400
+  },
+  "normalAssign": {
+   "prize": 14884000,
+   "lastPrize": 0,
+   "winnerCount": 37210,
+   "perPrize": 400
+  }
+ },
+ {
   "period": 115000106,
   "lotteryDate": "2026-11-17T00:00:00",
   "redeemableDate": "2027-02-17T00:00:00",
@@ -69,79 +142,6 @@
    "prize": 11960400,
    "lastPrize": 0,
    "winnerCount": 29901,
-   "perPrize": 400
-  }
- },
- {
-  "period": 115000105,
-  "lotteryDate": "2026-11-13T00:00:00",
-  "redeemableDate": "2027-02-15T00:00:00",
-  "drawNumberSize": [
-   7,
-   8,
-   13,
-   15,
-   25,
-   46,
-   43
-  ],
-  "drawNumberAppear": [
-   8,
-   15,
-   46,
-   7,
-   25,
-   13,
-   43
-  ],
-  "totalAmount": 78165731,
-  "sellAmount": 93987400,
-  "jackpotAssign": {
-   "prize": 18402230,
-   "lastPrize": 21839191,
-   "winnerCount": 0,
-   "perPrize": 0
-  },
-  "secondAssign": {
-   "prize": 1458713,
-   "lastPrize": 3693596,
-   "winnerCount": 0,
-   "perPrize": 0
-  },
-  "thirdAssign": {
-   "prize": 1570922,
-   "lastPrize": 0,
-   "winnerCount": 45,
-   "perPrize": 34909
-  },
-  "fourthAssign": {
-   "prize": 1009878,
-   "lastPrize": 0,
-   "winnerCount": 84,
-   "perPrize": 12022
-  },
-  "fifthAssign": {
-   "prize": 4250000,
-   "lastPrize": 0,
-   "winnerCount": 2125,
-   "perPrize": 2000
-  },
-  "sixthAssign": {
-   "prize": 2368000,
-   "lastPrize": 0,
-   "winnerCount": 2368,
-   "perPrize": 1000
-  },
-  "seventhAssign": {
-   "prize": 9076400,
-   "lastPrize": 0,
-   "winnerCount": 22691,
-   "perPrize": 400
-  },
-  "normalAssign": {
-   "prize": 14496800,
-   "lastPrize": 0,
-   "winnerCount": 36242,
    "perPrize": 400
   }
  }
