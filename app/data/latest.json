@@ -1,14 +1,29 @@
 {
  "sample": false,
- "updatedAt": "2026-11-20T21:41:58.643Z",
+ "updatedAt": "2026-11-24T23:24:05.664Z",
  "next": {
-  "period": "115108",
-  "date": "2026-11-24",
-  "jackpot": 38230239,
-  "estSales": 94109300,
+  "period": "115109",
+  "date": "2026-11-27",
+  "jackpot": 37054915,
+  "estSales": 93054213,
   "jackpotEstimated": true
  },
  "draws": [
+  {
+   "period": "115108",
+   "date": "2026-11-24",
+   "numbers": [
+    10,
+    11,
+    23,
+    24,
+    33,
+    42
+   ],
+   "special": 40,
+   "jackpotPool": 18266126,
+   "jackpotWinners": 0
+  },
   {
    "period": "115107",
    "date": "2026-11-20",
@@ -892,126 +907,6 @@
    ],
    "special": 45,
    "jackpotPool": 60668414,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115048",
-   "date": "2026-04-28",
-   "numbers": [
-    6,
-    10,
-    14,
-    25,
-    26,
-    32
-   ],
-   "special": 7,
-   "jackpotPool": 38923008,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115047",
-   "date": "2026-04-24",
-   "numbers": [
-    7,
-    14,
-    16,
-    37,
-    39,
-    47
-   ],
-   "special": 34,
-   "jackpotPool": 19720852,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115046",
-   "date": "2026-04-21",
-   "numbers": [
-    1,
-    6,
-    17,
-    19,
-    20,
-    40
-   ],
-   "special": 22,
-   "jackpotPool": 220705904,
-   "jackpotWinners": 1
-  },
-  {
-   "period": "115045",
-   "date": "2026-04-17",
-   "numbers": [
-    7,
-    10,
-    11,
-    22,
-    40,
-    45
-   ],
-   "special": 18,
-   "jackpotPool": 193928293,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115044",
-   "date": "2026-04-14",
-   "numbers": [
-    4,
-    8,
-    21,
-    23,
-    24,
-    43
-   ],
-   "special": 13,
-   "jackpotPool": 171638204,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115043",
-   "date": "2026-04-10",
-   "numbers": [
-    4,
-    10,
-    15,
-    17,
-    21,
-    40
-   ],
-   "special": 30,
-   "jackpotPool": 148009150,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115042",
-   "date": "2026-04-07",
-   "numbers": [
-    1,
-    2,
-    6,
-    16,
-    18,
-    26
-   ],
-   "special": 47,
-   "jackpotPool": 126351461,
-   "jackpotWinners": 0
-  },
-  {
-   "period": "115041",
-   "date": "2026-04-03",
-   "numbers": [
-    5,
-    12,
-    13,
-    25,
-    36,
-    48
-   ],
-   "special": 8,
-   "jackpotPool": 107275628,
    "jackpotWinners": 0
   }
  ]
